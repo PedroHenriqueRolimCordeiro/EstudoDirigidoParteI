@@ -56,7 +56,7 @@ $$x[n] = A\,\alpha^n$$
 
 Quando $\alpha = |\alpha|\,e^{j\omega_0}$ e $A = |A|\,e^{j\phi}$, temos:
 
-$$x[n] = |A|\,|\alpha|^n \cos(\omega_0 n + \phi) + j\,|A|\,|\alpha|^n \operatorname{sen}(\omega_0 n + \phi)$$
+$$x[n] = |A|\,|\alpha|^n \cos(\omega_0 n + \phi) + j\,|A|\,|\alpha|^n \sin(\omega_0 n + \phi)$$
 
 Para $|\alpha| = 1$, obtém-se a **exponencial complexa pura**:
 
@@ -102,8 +102,6 @@ Proakis e Manolakis (2007) destacam que a caracterização por energia e potênc
 A **energia total** de um sinal de tempo discreto é definida como:
 
 $$E = \sum_{n=-\infty}^{\infty} |x[n]|^2$$
-
-> **Observação:** Pelo Teorema de Parseval (Oppenheim & Schafer, Eq. 2.162), a energia também pode ser escrita no domínio da frequência: $E = \frac{1}{2\pi} \int_{-\pi}^{\pi} |X(e^{j\omega})|^2 \, d\omega$.
 
 A **potência média** de um sinal é:
 
