@@ -1,8 +1,5 @@
 # Estudo Dirigido — Parte 1: Modelagem de Sinais e Sistemas Discretos
-
-**Disciplina:** Processamento Digital de Sinais (PDS)  
-**Curso:** Engenharia da Computação
-**Instituição:** Instituto Federal da Paraíba — IFPB  
+**Disciplina:** Processamento Digital de Sinais (PDS)    
 **Semestre:** 2026.1
 
 ---
@@ -48,7 +45,7 @@ PDS/
 │   ├── fig15_teste_linearidade.png
 │   ├── fig16_teste_invariancia.png
 │   └── fig17_teste_bibo.png
-└── README.md                     # Este arquivo
+└── README.md                     
 ```
 
 ---
