@@ -1,5 +1,5 @@
 function pds_export_figure(figHandle, filePath)
-% Exporta figura em PNG com qualidade para relatorios academicos.
+% Exporta figura em PNG.
 
   marginFraction = 0.08;
 
