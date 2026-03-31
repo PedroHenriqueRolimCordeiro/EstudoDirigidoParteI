@@ -5,6 +5,7 @@
 %% =========================================================================
 
 clear; clc;
+% Carrega as configurações visuais padrão do projeto
 pds_academic_defaults;
 
 %% Paleta usada nos gráficos
@@ -19,6 +20,7 @@ n = -10:10;
 %% =========================================================================
 %% Sinal 1: impulso unitário delta[n]
 %% =========================================================================
+% A condição (n == 0) gera o valor 1 apenas na origem e 0 no restante
 delta = (n == 0);
 
 fig1 = figure('Position', [100 100 700 350], 'Visible', 'off');
@@ -26,11 +28,13 @@ stem(n, delta, 'filled', 'LineWidth', 1.5, 'MarkerSize', 6, 'Color', cor_azul);
 xlabel('n (amostras)'); ylabel('\delta[n]');
 title('Impulso Unitario \delta[n]');
 ylim([-0.2, 1.5]);
+% Exporta a figura gerada para a pasta de resultados
 pds_export_figure(fig1, '../resultados/fig01_impulso_unitario.png');
 
 %% =========================================================================
 %% Sinal 2: degrau unitário u[n]
 %% =========================================================================
+% Gera o valor 1 para n >= 0, e 0 para valores negativos
 u = (n >= 0);
 
 fig2 = figure('Position', [100 100 700 350], 'Visible', 'off');
@@ -64,12 +68,13 @@ pds_export_figure(fig3, '../resultados/fig03_exponencial_complexa.png');
 %% =========================================================================
 n_sen = 0:60;
 A = 2; omega = 0.2 * pi; phi = 0;
+% O período fundamental é N = 2*pi / omega = 2*pi / 0.2*pi = 10 amostras
 x_sen = A * cos(omega * n_sen + phi);
 
 fig4 = figure('Position', [100 100 800 350], 'Visible', 'off');
 stem(n_sen, x_sen, 'filled', 'LineWidth', 1.0, 'MarkerSize', 3, 'Color', cor_azul);
 xlabel('n (amostras)'); ylabel('x[n]');
-title('Senoide Discreta: x[n] = 2 cos(0.2\pi n),  Periodo N = 10');
+title('Senoide Discreta: x[n] = 2 cos(0.2\pi n),  Periodo N = 10');
 pds_export_figure(fig4, '../resultados/fig04_senoide_discreta.png');
 
 %% =========================================================================
@@ -100,6 +105,7 @@ pds_export_figure(fig5, '../resultados/fig05_exponencial_real.png');
 %% =========================================================================
 n_ret = 0:50;
 N_janela = 11;
+% Cria um pulso com valor 1 iniciando em n=10 e com a largura exata de N_janela
 x_ret = double(n_ret >= 10 & n_ret <= 10 + N_janela - 1);
 
 fig6 = figure('Position', [100 100 700 350], 'Visible', 'off');
