@@ -1,13 +1,12 @@
 %% =========================================================================
 %% Simulação 2 — Operações com Sinais Discretos
-%% =========================================================================
-%% Mostra deslocamento, inversão e escalonamento usando x[n] = 0.9^n u[n].
+%% O que faz: aplica deslocamento, inversão e escala em x[n] = 0.9^n u[n].
 %% =========================================================================
 
 clear; clc;
 pds_academic_defaults;
 
-%% Paleta usada nos gráficos
+%% Cores dos gráficos
 cor_azul = [0.00 0.20 0.45];
 cor_verm = [0.55 0.10 0.10];
 cor_verd = [0.10 0.35 0.20];
@@ -15,6 +14,7 @@ cor_roxo = [0.35 0.20 0.55];
 
 %% Sinal base
 n = -5:20;
+% Sinal causal de referência para aplicar as operações
 x = (0.9 .^ n) .* (n >= 0);
 
 fig1 = figure('Position', [100 100 700 350], 'Visible', 'off');
@@ -25,8 +25,9 @@ grid on;
 pds_export_figure(fig1, '../resultados/fig07_sinal_original.png');
 
 %% =========================================================================
-%% Operação 1: deslocamento
+%% Operação 1: deslocamento (atraso e avanço)
 %% =========================================================================
+% n0 positivo: atraso | n0 negativo: avanço
 n0_atraso = 5;
 n0_avanco = -3;
 x_atraso = (0.9 .^ (n - n0_atraso)) .* ((n - n0_atraso) >= 0);
@@ -55,6 +56,7 @@ pds_export_figure(fig2, '../resultados/fig08_deslocamento.png');
 %% =========================================================================
 %% Operação 2: inversão temporal
 %% =========================================================================
+% Espelha o sinal em torno de n = 0
 x_invertido = (0.9 .^ (-n)) .* ((-n) >= 0);
 
 fig3 = figure('Position', [100 100 800 500], 'Visible', 'off');
@@ -72,8 +74,9 @@ xlabel('n (amostras)');
 pds_export_figure(fig3, '../resultados/fig09_inversao.png');
 
 %% =========================================================================
-%% Operação 3: escalonamento
+%% Operação 3: escalonamento por constante
 %% =========================================================================
+% c1 amplifica e c3 inverte o sinal (por ser negativo)
 c1 = 3;
 c3 = -2;
 
