@@ -1,5 +1,5 @@
 function pds_academic_defaults()
-% Configuracao visual padrao para figuras com estilo academico.
+% Configuracao visual padrão para as figuras.
 
   close all;
 
