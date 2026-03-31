@@ -1,23 +1,24 @@
 %% =========================================================================
 %% Simulação 4 — Processo de Amostragem
-%% =========================================================================
-%% Mostra a conversão contínuo -> discreto e um exemplo com sensor.
+%% O que faz: mostra contínuo -> discreto e um caso prático com sensor.
 %% =========================================================================
 
 clear; clc;
 pds_academic_defaults;
 
-%% Paleta usada nos gráficos
+%% Cores dos gráficos
 cor_azul = [0.00 0.20 0.45];
 cor_verm = [0.55 0.10 0.10];
 
 %% =========================================================================
 %% Exemplo 1: senoide de 50 Hz com Fs = 500 Hz
 %% =========================================================================
+% Sinal contínuo de referência
 f0 = 50;
 t = 0:0.0001:0.04;
 x_cont = cos(2*pi*f0*t);
 
+% Amostragem uniforme
 Ts = 0.002; Fs = 1/Ts;
 n_am = 0:Ts:0.04;
 x_disc = cos(2*pi*f0*n_am);
@@ -34,8 +35,9 @@ grid on;
 pds_export_figure(fig1, '../resultados/fig12_amostragem_basica.png');
 
 %% =========================================================================
-%% Exemplo 2: comparação entre taxas de amostragem
+%% Exemplo 2: comparação de diferentes Fs
 %% =========================================================================
+% Compara alta, média e baixa taxa de amostragem
 Fs_vals = [500, 200, 110];
 
 fig2 = figure('Position', [100 100 800 700], 'Visible', 'off');
@@ -57,8 +59,9 @@ xlabel('Tempo (s)');
 pds_export_figure(fig2, '../resultados/fig13_comparacao_taxas.png');
 
 %% =========================================================================
-%% Exemplo 3: sinal de sensor de temperatura
+%% Exemplo 3: sensor de temperatura com ruído
 %% =========================================================================
+% Modelo simples: componente DC + variações + ruído
 Fs_sensor = 100;
 duracao = 2;
 n_sensor = 0:1/Fs_sensor:duracao;
