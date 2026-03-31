@@ -1,14 +1,12 @@
 %% =========================================================================
 %% Simulação 5 — Classificação de Sistemas Discretos
-%% =========================================================================
-%% Faz testes de linearidade, invariância no tempo e estabilidade BIBO.
-%% No fim, imprime uma tabela-resumo com as propriedades dos sistemas.
+%% O que faz: testa linearidade, invariância e BIBO; depois imprime resumo.
 %% =========================================================================
 
 clear; clc;
 pds_academic_defaults;
 
-%% Paleta usada nos gráficos
+%% Cores dos gráficos
 cor_azul = [0.00 0.20 0.45];
 cor_verm = [0.55 0.10 0.10];
 
@@ -17,6 +15,7 @@ fprintf('   CLASSIFICACAO DE SISTEMAS DISCRETOS\n');
 fprintf('================================================================\n\n');
 
 %% Sinais de teste
+% Entradas usadas nos testes de propriedades
 N = 50;
 n = 0:N-1;
 x1 = (n == 10);
@@ -30,6 +29,7 @@ quadratico = @(x) x.^2;
 %% =========================================================================
 %% Teste 1: linearidade
 %% =========================================================================
+% Compara T{a x1 + b x2} com aT{x1} + bT{x2}
 fprintf('--- TESTE DE LINEARIDADE ---\n\n');
 
 entrada_comb = a_coef*x1 + b_coef*x2;
@@ -70,6 +70,7 @@ pds_export_figure(fig1, '../resultados/fig15_teste_linearidade.png');
 %% =========================================================================
 %% Teste 2: invariância no tempo
 %% =========================================================================
+% Compara T{x[n-n0]} com y[n-n0]
 fprintf('--- TESTE DE INVARIANCIA NO TEMPO ---\n\n');
 
 x_teste = sin(0.3*pi*n);
@@ -119,6 +120,7 @@ pds_export_figure(fig2, '../resultados/fig16_teste_invariancia.png');
 %% =========================================================================
 %% Teste 3: estabilidade BIBO
 %% =========================================================================
+% Verifica somabilidade absoluta de h[n] e resposta ao degrau
 fprintf('--- TESTE DE ESTABILIDADE BIBO ---\n\n');
 
 h_est = 0.8 .^ n;
