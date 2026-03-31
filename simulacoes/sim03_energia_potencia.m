@@ -1,13 +1,12 @@
 %% =========================================================================
 %% Simulação 3 — Energia e Potência de Sinais Discretos
-%% =========================================================================
-%% Calcula energia e potência de sinais típicos e classifica cada caso.
+%% O que faz: calcula E/P e classifica sinais em energia, potência ou nenhuma.
 %% =========================================================================
 
 clear; clc;
 pds_academic_defaults;
 
-%% Paleta usada nos gráficos
+%% Cores dos gráficos
 cor_azul = [0.00 0.20 0.45];
 cor_verm = [0.55 0.10 0.10];
 
@@ -16,6 +15,7 @@ fprintf('   CLASSIFICACAO ENERGETICA DOS SINAIS DISCRETOS\n');
 fprintf('================================================================\n\n');
 
 %% Sinal 1: exponencial decrescente (energia)
+% Referência clássica de sinal de energia
 a = 0.8;
 N_trunc = 200;
 n1 = 0:N_trunc;
@@ -23,6 +23,7 @@ x1 = a .^ n1;
 
 E1_num = sum(abs(x1).^2);
 E1_teo = 1 / (1 - abs(a)^2);
+% Potência média estimada em janela finita
 P1_num = E1_num / (2*N_trunc + 1);
 
 fprintf('--- Sinal 1: x[n] = (%.1f)^n u[n] ---\n', a);
@@ -32,6 +33,7 @@ fprintf('  Potencia media:    P = %.6f (-> 0)\n', P1_num);
 fprintf('  Classificacao:     SINAL DE ENERGIA\n\n');
 
 %% Sinal 2: senoide discreta (potência)
+% Senoide periódica: energia cresce com N, potência converge
 A = 2; omega = 0.2 * pi;
 N_pot = 1000;
 n2 = 0:N_pot;
@@ -48,6 +50,7 @@ fprintf('  Potencia teorica:  P = A^2/2 = %.6f\n', P2_teo);
 fprintf('  Classificacao:     SINAL DE POTENCIA\n\n');
 
 %% Sinal 3: degrau unitário (potência)
+% Degrau também é sinal de potência
 N_deg = 1000;
 n3 = -N_deg:N_deg;
 x3 = double(n3 >= 0);
@@ -63,6 +66,7 @@ fprintf('  Potencia teorica:  P = 1/2 = %.6f\n', P3_teo);
 fprintf('  Classificacao:     SINAL DE POTENCIA\n\n');
 
 %% Sinal 4: impulso unitário (energia)
+% Impulso tem energia unitária
 n4 = -N_deg:N_deg;
 x4 = double(n4 == 0);
 E4_num = sum(abs(x4).^2);
@@ -74,6 +78,7 @@ fprintf('  Potencia media:    P = %.8f (-> 0)\n', P4_num);
 fprintf('  Classificacao:     SINAL DE ENERGIA\n\n');
 
 %% Sinal 5: exponencial crescente (nenhuma categoria)
+% Crescimento exponencial: nem energia nem potência finitas
 a5 = 1.1;
 N_cresc = 100;
 n5 = 0:N_cresc;
@@ -88,7 +93,7 @@ fprintf('  Potencia (N=%d):   P = %.2e (-> inf)\n', N_cresc, P5_num);
 fprintf('  Classificacao:     NENHUMA CATEGORIA (E=inf, P=inf)\n\n');
 
 %% =========================================================================
-%% Visualização
+%% Figuras de saída
 %% =========================================================================
 
 % Figura 1: Sinais de energia
@@ -130,7 +135,7 @@ xlabel('n'); ylabel('x[n]'); grid on;
 
 pds_export_figure(fig3, '../resultados/fig11c_nenhuma_categoria.png');
 
-%% --- Tabela resumo ---
+%% Tabela resumo
 fprintf('================================================================\n');
 fprintf('   RESUMO DA CLASSIFICACAO\n');
 fprintf('================================================================\n');
